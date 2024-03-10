@@ -19,6 +19,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json 处理json格式数据方法
 app.use(bodyParser.json());
+//引入路由模块
+const loginRouter = require("./router/login");
+app.use("/api", loginRouter);
 //绑定侦听和端口
 app.listen(3007, () => {
     console.log("http://127.0.0:3007");
