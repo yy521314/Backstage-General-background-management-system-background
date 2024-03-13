@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-08 17:27:52
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-03-12 21:15:48
+ * @LastEditTime: 2024-03-13 23:00:31
  * @FilePath: \后台通用管理系统\后端\app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,6 +27,7 @@ const upload = multer({
     dest: "./public/upload",
 });
 app.use(upload.any());
+app.use(express.static("./public"));
 //错误拦截
 app.use((req, res, next) => {
     // status=0为成功,=1为失败,默认设为1,方便处理失败的情况
@@ -41,8 +42,8 @@ app.use((req, res, next) => {
 });
 
 //Jwt部分
-const jwtconfig = require("./jwt_config/index.js");
-const { expressjwt: jwt } = require("express-jwt");
+// const jwtconfig = require("./jwt_config/index.js");
+// const { expressjwt: jwt } = require("express-jwt");
 // app.use(
 //     jwt({
 //         secret: jwtconfig.jwtSecretKey,
