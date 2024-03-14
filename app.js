@@ -46,14 +46,14 @@ app.use((req, res, next) => {
 //Jwt部分
 const jwtconfig = require("./jwt_config/index.js");
 const { expressjwt: jwt } = require("express-jwt");
-// app.use(
-//     jwt({
-//         secret: jwtconfig.jwtSecretKey,
-//         algorithms: ["HS256"],
-//     }).unless({
-//         path: [/^\/api\//],
-//     })
-// );
+app.use(
+    jwt({
+        secret: jwtconfig.jwtSecretKey,
+        algorithms: ["HS256"],
+    }).unless({
+        path: [/^\/api\//],
+    })
+);
 
 //引入路由模块
 const loginRouter = require("./router/login");
