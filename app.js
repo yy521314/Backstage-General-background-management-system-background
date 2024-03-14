@@ -28,8 +28,11 @@ const upload = multer({
 });
 app.use(upload.any());
 app.use(express.static("./public"));
+<<<<<<< HEAD
 // const path = require("path");
 // app.use(express.static(path.join(__dirname, "dist")));
+=======
+>>>>>>> 3bef0f74c7d1452112355e6919e68f6acbaf44d5
 //错误拦截
 app.use((req, res, next) => {
     // status=0为成功,=1为失败,默认设为1,方便处理失败的情况
@@ -44,8 +47,8 @@ app.use((req, res, next) => {
 });
 
 //Jwt部分
-const jwtconfig = require("./jwt_config/index.js");
-const { expressjwt: jwt } = require("express-jwt");
+// const jwtconfig = require("./jwt_config/index.js");
+// const { expressjwt: jwt } = require("express-jwt");
 // app.use(
 //     jwt({
 //         secret: jwtconfig.jwtSecretKey,
