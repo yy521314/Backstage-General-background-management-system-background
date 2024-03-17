@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-08 17:27:52
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-03-14 17:20:19
+ * @LastEditTime: 2024-03-17 21:24:37
  * @FilePath: \后台通用管理系统\后端\app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,8 +28,8 @@ const upload = multer({
 });
 app.use(upload.any());
 app.use(express.static("./public"));
-// const path = require("path");
-// app.use(express.static(path.join(__dirname, "dist")));
+const path = require("path");
+app.use(express.static(path.join(__dirname, "dist")));
 //错误拦截
 app.use((req, res, next) => {
     // status=0为成功,=1为失败,默认设为1,方便处理失败的情况
@@ -46,20 +46,22 @@ app.use((req, res, next) => {
 //Jwt部分
 const jwtconfig = require("./jwt_config/index.js");
 const { expressjwt: jwt } = require("express-jwt");
-app.use(
-    jwt({
-        secret: jwtconfig.jwtSecretKey,
-        algorithms: ["HS256"],
-    }).unless({
-        path: [/^\/api\//],
-    })
-);
+// app.use(
+//     jwt({
+//         secret: jwtconfig.jwtSecretKey,
+//         algorithms: ["HS256"],
+//     }).unless({
+//         path: [/^\/api\//],
+//     })
+// );
 
 //引入路由模块
 const loginRouter = require("./router/login");
 app.use("/api", loginRouter);
 const userRouter = require("./router/userinfo.js");
 app.use("/user", userRouter);
+const setRouter = require("./router/setting.js");
+app.use("/set", setRouter);
 
 // 对不符合joi规则的情况进行报错
 app.use((err, req, res, next) => {

@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-12 19:10:23
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-03-13 23:05:45
+ * @LastEditTime: 2024-03-17 18:18:15
  * @FilePath: \Backstage-General-background-management-system-background\router_handle\userinfo.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,8 +16,7 @@ const crypto = require("crypto");
 fs = require("fs");
 // 上传头像
 exports.uploadAvatar = (req, res) => {
-    // res.send(req.files[0]);
-    // 生成唯一标识;
+    //生成唯一标识;
     const onlyId = crypto.randomUUID();
     let oldName = req.files[0].filename;
     let newName = Buffer.from(req.files[0].originalname, "latin1").toString(
