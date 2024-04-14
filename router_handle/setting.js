@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-17 20:59:43
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-04-12 21:11:59
+ * @LastEditTime: 2024-04-14 12:58:08
  * @FilePath: \Backstage-General-background-management-system-background\router_handle\setting.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -103,4 +103,60 @@ exports.getAllCompanyIntroduce = (req, res) => {
         res.send(result);
     });
 };
-// -----其他设置
+// ------------------------------------------------------------------------------------------其他设置
+// 部门设置 数组
+exports.setDepartment = (req, res) => {
+    const sql = 'update setting set set_value = ? where set_name = "部门设置" ';
+    db.query(sql, req.body.set_value, (err, result) => {
+        if (err) return res.cc(err);
+        res.send({
+            status: 0,
+            message: "部门设置成功",
+        });
+    });
+};
+
+// 获取部门
+exports.getDepartment = (req, res) => {
+    const sql = 'select set_value from setting where set_name = "部门设置"';
+    db.query(sql, (err, result) => {
+        if (err) return res.cc(err);
+        if (result[0].set_value) {
+            res.send(result[0].set_value);
+        } else {
+            res.send({
+                status: 1,
+                message: "请设置公司部门",
+            });
+        }
+    });
+};
+
+// 产品设置 数组
+// exports.setProduct = (req, res) => {
+//     const sql = 'update setting set set_value = ? where set_name = "产品设置" ';
+//     db.query(sql, req.body.set_value, (err, result) => {
+//         if (err) return res.cc(err);
+//         res.send({
+//             status: 0,
+//             message: "产品设置成功",
+//         });
+//     });
+// };
+
+// 获取产品
+// exports.getProduct = (req, res) => {
+//     const sql = 'select set_value from setting where set_name = "产品设置"';
+//     db.query(sql, (err, result) => {
+//         if (err) return res.cc(err);
+
+//         if (result[0].set_value) {
+//             res.send(result[0].set_value);
+//         } else {
+//             res.send({
+//                 status: 1,
+//                 message: "请设置产品种类",
+//             });
+//         }
+//     });
+// };
