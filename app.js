@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-08 17:27:52
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-04-12 22:56:04
+ * @LastEditTime: 2024-04-15 23:18:17
  * @FilePath: \后台通用管理系统\后端\app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -62,6 +62,16 @@ const userRouter = require("./router/userinfo.js");
 app.use("/user", userRouter);
 const setRouter = require("./router/setting.js");
 app.use("/set", setRouter);
+const productRouter = require("./router/product.js");
+app.use("/pro", productRouter);
+const fileRouter = require("./router/file.js");
+app.use("/file", fileRouter);
+const messageRouter = require("./router/message.js");
+app.use("/msg", messageRouter);
+const loginLogRouter = require("./router/login_log.js");
+app.use("/llog", loginLogRouter);
+const operationLogRouter = require("./router/operation_log.js");
+app.use("/olog", operationLogRouter);
 
 // 对不符合joi规则的情况进行报错
 app.use((err, req, res, next) => {

@@ -145,18 +145,18 @@ exports.getDepartment = (req, res) => {
 // };
 
 // 获取产品
-// exports.getProduct = (req, res) => {
-//     const sql = 'select set_value from setting where set_name = "产品设置"';
-//     db.query(sql, (err, result) => {
-//         if (err) return res.cc(err);
+exports.getProduct = (req, res) => {
+    const sql = 'select set_value from setting where set_name = "产品设置"';
+    db.query(sql, (err, result) => {
+        if (err) return res.cc(err);
 
-//         if (result[0].set_value) {
-//             res.send(result[0].set_value);
-//         } else {
-//             res.send({
-//                 status: 1,
-//                 message: "请设置产品种类",
-//             });
-//         }
-//     });
-// };
+        if (result[0].set_value) {
+            res.send(result[0].set_value);
+        } else {
+            res.send({
+                status: 1,
+                message: "请设置产品种类",
+            });
+        }
+    });
+};
