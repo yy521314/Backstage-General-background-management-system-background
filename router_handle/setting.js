@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-17 20:59:43
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-04-14 12:58:08
+ * @LastEditTime: 2024-04-16 15:31:25
  * @FilePath: \Backstage-General-background-management-system-background\router_handle\setting.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -133,16 +133,16 @@ exports.getDepartment = (req, res) => {
 };
 
 // 产品设置 数组
-// exports.setProduct = (req, res) => {
-//     const sql = 'update setting set set_value = ? where set_name = "产品设置" ';
-//     db.query(sql, req.body.set_value, (err, result) => {
-//         if (err) return res.cc(err);
-//         res.send({
-//             status: 0,
-//             message: "产品设置成功",
-//         });
-//     });
-// };
+exports.setProduct = (req, res) => {
+    const sql = 'update setting set set_value = ? where set_name = "产品设置" ';
+    db.query(sql, req.body.set_value, (err, result) => {
+        if (err) return res.cc(err);
+        res.send({
+            status: 0,
+            message: "产品设置成功",
+        });
+    });
+};
 
 // 获取产品
 exports.getProduct = (req, res) => {

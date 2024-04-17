@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-10 11:06:00
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-03-12 20:58:56
+ * @LastEditTime: 2024-04-16 23:18:00
  * @FilePath: \Backstage-General-background-management-system-background\router\login.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,6 +22,8 @@ const loginHandler = require("../router_handle/login");
 router.post("/register", expressJoi(login_limit), loginHandler.register);
 // 登录
 router.post("/login", expressJoi(login_limit), loginHandler.login);
+// returnMenuList
+router.post("/returnMenuList", loginHandler.returnMenuList);
 
 // 向外暴露路由
 

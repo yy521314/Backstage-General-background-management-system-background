@@ -302,7 +302,8 @@ exports.deleteMessage = (req, res) => {
 
 // 获取公司公告总数
 exports.getCompanyMessageLength = (req, res) => {
-    const sql = 'select * from message where message_category ="公司公告"';
+    const sql =
+        'select * from message where message_category ="公司公告" and message_status = 0';
     db.query(sql, (err, result) => {
         if (err) return res.cc(err);
         res.send({
@@ -313,7 +314,8 @@ exports.getCompanyMessageLength = (req, res) => {
 
 // 获取系统消息总数
 exports.getSystemMessageLength = (req, res) => {
-    const sql = 'select * from message where message_category ="系统消息"';
+    const sql =
+        'select * from message where message_category ="系统消息" and message_status = 0';
     db.query(sql, (err, result) => {
         if (err) return res.cc(err);
         res.send({

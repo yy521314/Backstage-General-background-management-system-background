@@ -1,3 +1,11 @@
+/*
+ * @Author: 'yang' '1173278084@qq.com'
+ * @Date: 2024-04-15 18:18:27
+ * @LastEditors: 'yang' '1173278084@qq.com'
+ * @LastEditTime: 2024-04-16 15:25:52
+ * @FilePath: \Backstage-General-background-management-system-background\router_handle\operation_log.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // 导入数据库操作模块
 const db = require("../db/index");
 
@@ -45,7 +53,7 @@ exports.operationLogList = (req, res) => {
 // 搜索最近十条操作记录
 exports.searchOperationLogList = (req, res) => {
     const sql =
-        "select * from operation_log where operation_person = ? ORDER BY operation_time limit 10";
+        "select * from operation_log where operation_person = ? ORDER BY operation_time DESC limit 10 ";
     db.query(sql, req.body.operation_person, (err, result) => {
         if (err) return res.cc(err);
         res.send(result);

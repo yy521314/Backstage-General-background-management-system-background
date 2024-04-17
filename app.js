@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-03-08 17:27:52
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-04-15 23:18:17
+ * @LastEditTime: 2024-04-16 23:05:34
  * @FilePath: \后台通用管理系统\后端\app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,8 +44,8 @@ app.use((req, res, next) => {
 });
 
 //Jwt部分
-const jwtconfig = require("./jwt_config/index.js");
-const { expressjwt: jwt } = require("express-jwt");
+// const jwtconfig = require("./jwt_config/index.js");
+// const { expressjwt: jwt } = require("express-jwt");
 // app.use(
 //     jwt({
 //         secret: jwtconfig.jwtSecretKey,
@@ -72,6 +72,8 @@ const loginLogRouter = require("./router/login_log.js");
 app.use("/llog", loginLogRouter);
 const operationLogRouter = require("./router/operation_log.js");
 app.use("/olog", operationLogRouter);
+const overviewLogRouter = require("./router/overview.js");
+app.use("/ov", overviewLogRouter);
 
 // 对不符合joi规则的情况进行报错
 app.use((err, req, res, next) => {
