@@ -2,7 +2,7 @@
  * @Author: 'yang' '1173278084@qq.com'
  * @Date: 2024-04-15 18:19:40
  * @LastEditors: 'yang' '1173278084@qq.com'
- * @LastEditTime: 2024-04-15 18:19:53
+ * @LastEditTime: 2024-04-18 17:54:38
  * @FilePath: \Backstage-General-background-management-system-background\router_handle\login_log.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -34,7 +34,7 @@ exports.loginLog = (req, res) => {
 
 // 返回登录日志列表
 exports.loginLogList = (req, res) => {
-    const sql = "select * from login_log";
+    const sql = "select * from login_log ORDER BY login_time DESC";
     db.query(sql, (err, result) => {
         if (err) return res.cc(err);
         res.send(result);
@@ -44,7 +44,7 @@ exports.loginLogList = (req, res) => {
 // 搜索最近十条登录记录
 exports.searchLoginLogList = (req, res) => {
     const sql =
-        "select * from login_log where account = ? ORDER BY login_time limit 10";
+        "select * from login_log where account = ? ORDER BY login_time DESC limit 10";
     db.query(sql, req.body.account, (err, result) => {
         if (err) return res.cc(err);
         res.send(result);
@@ -61,18 +61,16 @@ exports.loginLogListLength = (req, res) => {
         });
     });
 };
-
 // 监听换页返回数据  登录日志列表
 // limit 10 为我们要拿到数据 offset 我们跳过多少条数据
 exports.returnLoginListData = (req, res) => {
     const number = (req.body.pager - 1) * 10;
-    const sql = `select * from login_log ORDER BY login_time limit 10 offset ${number} `;
+    const sql = `select * from login_log ORDER BY login_time DESC limit 10 offset ${number} `;
     db.query(sql, (err, result) => {
         if (err) return res.cc(err);
         res.send(result);
     });
 };
-
 // 清空登录日志 truncate
 exports.clearLoginLogList = (req, res) => {
     const sql = "truncate table login_log";
